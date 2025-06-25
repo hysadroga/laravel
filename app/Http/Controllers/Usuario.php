@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 class Usuario extends Controller
 {
     function conectar(){
-        return view('usuario');
+        echo '<marquee>Usuario conectado</marquee>';
     }
     function desconectar(){
-        echo 'Usuário desconectado!';
+        echo '<strong>Usuario desconectado</strong>';
     }
 }
