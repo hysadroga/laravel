@@ -27,7 +27,7 @@
                 <td>{{$veiculo->cor}}</td>
                 <td>
 					<a href="/veiculo/remover/{{ $veiculo->id }}">Excluir</a>
-                    <a href="{{ route('veiculo-edit', $veiculo->id) }}">Atualizar</a>
+                    <a href="{{ route('veiculo-editar', $veiculo->id) }}">Atualizar</a>
                 </td>
             </tr>
         @endforeach
