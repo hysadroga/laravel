@@ -13,36 +13,35 @@ class AnuncioController extends Controller
 
     function store(Request $dados){
         if ($dados->id == '') {
-            //fazemos ação de create aqui...
+     
             $anuncio = new AnuncioModel();
             $anuncio->create($dados->all());
         } else {
-            //fazemos a ação de update aqui
-            $anuncio = AnuncioModel::find($dados->id); //localiza o registro
-            $update = $anuncio->update($dados->all()); //atualiza
+           
+            $anuncio = AnuncioModel::find($dados->id); 
+            $update = $anuncio->update($dados->all()); 
         }
         
-        //recupera todos os registros atualizados
+       
         $anuncio = AnuncioModel::all();
         
-        //após adicionar ou editar redireciona para a página listar
         return view('anuncio-listar', ['anuncio'=>$anuncio]);
     }    
-    function list(){
+    function listar(){
         $anuncio = AnuncioModel::all();
         return view('anuncio-listar',['anuncio' => $anuncio]);
     }
 
-    function remove($id){
+    function remover($id){
         AnuncioModel::destroy($id);
 
-        return redirect()->route('anuncio-list');
+        return redirect()->route('anuncio-listar');
     }  
-    function edit($id){
+    function editar($id){
         $anuncio = AnuncioModel::find($id);
 
     return view('anuncio-formulario', ['anuncio' => $anuncio]);
-    //vamos enviar o $veiculo que veio do BD para a página veiculo-formulario
+   
     }
 
 }
