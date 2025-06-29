@@ -4,7 +4,7 @@
     }
 </style>
 
-@foreach ($veiculo as $veiculo)
+@foreach ($veiculos as $veiculo)
 <table>
     <thead>
         <tr>

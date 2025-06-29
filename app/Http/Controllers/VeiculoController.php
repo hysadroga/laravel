@@ -13,16 +13,24 @@ class VeiculoController extends Controller
     }
 
     public function store(Request $request)
-    {
-        if (empty($request->id)) {
-            VeiculoModel::create($request->all());
-        } else {
-            $veiculo = VeiculoModel::findOrFail($request->id);
-            $veiculo->update($request->all());
-        }
+{
+    $request->validate([
+        'marca' => 'required|string|max:255',
+        'modelo' => 'required|string|max:255',
+        'ano' => 'required|digits:4|integer',
+        'placa' => 'required|string|max:10',
+        'cor' => 'required|string|max:50',
+    ]);
 
-        return redirect()->route('veiculo-listar');
+    if (empty($request->id)) {
+        VeiculoModel::create($request->all());
+    } else {
+        $veiculo = VeiculoModel::findOrFail($request->id);
+        $veiculo->update($request->all());
     }
+
+    return redirect()->route('veiculo-listar');
+}
 
     public function listar()
     {

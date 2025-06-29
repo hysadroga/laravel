@@ -8,9 +8,7 @@ class VeiculoModel extends Model
 {
     protected $table = 'veiculo'; 
 
-    protected $fillable = [
-        'marca', 'modelo', 'placa', 'ano' 
-    ];
+    protected $fillable = ['marca', 'modelo', 'placa', 'ano', 'cor'];
 
     public $timestamps = false;
 }

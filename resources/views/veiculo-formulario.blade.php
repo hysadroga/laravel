@@ -70,25 +70,28 @@
 <body>
 
     <form action="{{ route('veiculo-store') }}" method="POST">
-        @csrf
+    @csrf
 
-        <label for="marca">Marca</label>
-        <input type="text" name="marca" id="marca" value="{{ old('marca', $veiculo->marca ?? '') }}" required>
+    <!-- Campo oculto usado para saber se está editando -->
+    <input type="hidden" name="id" value="{{ $veiculo->id ?? '' }}">
 
-        <label for="modelo">Modelo</label>
-        <input type="text" name="modelo" id="modelo" value="{{ old('modelo', $veiculo->modelo ?? '') }}" required>
+    <label for="marca">Marca</label>
+    <input type="text" name="marca" id="marca" value="{{ old('marca', $veiculo->marca ?? '') }}" required>
 
-        <label for="ano">Ano</label>
-        <input type="text" name="ano" id="ano" value="{{ old('ano', $veiculo->ano ?? '') }}" required>
+    <label for="modelo">Modelo</label>
+    <input type="text" name="modelo" id="modelo" value="{{ old('modelo', $veiculo->modelo ?? '') }}" required>
 
-        <label for="placa">Placa</label>
-        <input type="text" name="placa" id="placa" value="{{ old('placa', $veiculo->placa ?? '') }}" required>
+    <label for="ano">Ano</label>
+    <input type="text" name="ano" id="ano" value="{{ old('ano', $veiculo->ano ?? '') }}" required>
 
-        <label for="cor">Cor</label>
-        <input type="text" name="cor" id="cor" value="{{ old('cor', $veiculo->cor ?? '') }}" required>
+    <label for="placa">Placa</label>
+    <input type="text" name="placa" id="placa" value="{{ old('placa', $veiculo->placa ?? '') }}" required>
 
-        <button type="submit">Cadastrar</button>
-    </form>
+    <label for="cor">Cor</label>
+    <input type="text" name="cor" id="cor" value="{{ old('cor', $veiculo->cor ?? '') }}" required>
+
+    <button type="submit">Cadastrar</button>
+</form>
 
 </body>
 </html>
