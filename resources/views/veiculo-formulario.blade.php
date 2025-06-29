@@ -72,7 +72,6 @@
     <form action="{{ route('veiculo-store') }}" method="POST">
     @csrf
 
-    <!-- Campo oculto usado para saber se está editando -->
     <input type="hidden" name="id" value="{{ $veiculo->id ?? '' }}">
 
     <label for="marca">Marca</label>

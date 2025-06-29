@@ -4,44 +4,48 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AnuncioModel;
+use App\Models\VeiculoModel;
 
 class AnuncioController extends Controller
 {
-    function formulario(){
-        return view('anuncio-formulario');
+    public function formulario()
+    {
+        // Para criar ou editar, precisa listar veículos para escolher
+        $veiculos = VeiculoModel::all();
+        return view('anuncio-formulario', ['veiculos' => $veiculos]);
     }
 
-    function store(Request $dados){
-        if ($dados->id == '') {
-     
-            $anuncio = new AnuncioModel();
-            $anuncio->create($dados->all());
+    public function store(Request $request)
+    {
+        $dados = $request->all();
+
+        if (empty($dados['id'])) {
+            AnuncioModel::create($dados);
         } else {
-           
-            $anuncio = AnuncioModel::find($dados->id); 
-            $update = $anuncio->update($dados->all()); 
+            $anuncio = AnuncioModel::findOrFail($dados['id']);
+            $anuncio->update($dados);
         }
-        
-       
-        $anuncio = AnuncioModel::all();
-        
-        return view('anuncio-listar', ['anuncio'=>$anuncio]);
-    }    
-    function listar(){
-        $anuncio = AnuncioModel::all();
-        return view('anuncio-listar',['anuncio' => $anuncio]);
-    }
-
-    function remover($id){
-        AnuncioModel::destroy($id);
 
         return redirect()->route('anuncio-listar');
-    }  
-    function editar($id){
-        $anuncio = AnuncioModel::find($id);
-
-    return view('anuncio-formulario', ['anuncio' => $anuncio]);
-   
     }
 
+    public function listar()
+    {
+        // Carrega anúncios com veículo relacionado (eager loading)
+        $anuncios = AnuncioModel::with('veiculo')->get();
+        return view('anuncio-listar', ['anuncios' => $anuncios]);
+    }
+
+    public function remover($id)
+    {
+        AnuncioModel::destroy($id);
+        return redirect()->route('anuncio-listar');
+    }
+
+    public function editar($id)
+    {
+        $anuncio = AnuncioModel::findOrFail($id);
+        $veiculos = VeiculoModel::all();
+        return view('anuncio-formulario', ['anuncio' => $anuncio, 'veiculos' => $veiculos]);
+    }
 }

@@ -11,20 +11,19 @@ return new class extends Migration
      */
     public function up(): void
 {
-    Schema::create('anuncio', function (Blueprint $table) {
-        $table->id();
-        $table->string('titulo');
-        $table->string('descricao');
-        $table->decimal('preco', 8, 2);
-        $table->timestamp('data_publicacao')->nullable();
+Schema::create('anuncio', function (Blueprint $table) {
+    $table->id();
+    $table->string('titulo');
+    $table->string('descricao');
+    $table->decimal('preco', 10, 2); // ajustado para aceitar valores maiores
+    $table->timestamp('data_publicacao')->nullable();
 
-        $table->unsignedBigInteger('veiculo_id');
+    $table->unsignedBigInteger('veiculo_id')->unique(); // relacionamento 1:1
+    $table->foreign('veiculo_id')->references('id')->on('veiculo')->onDelete('cascade');
 
-        $table->foreign('veiculo_id')->references('id')->on('veiculo')->onDelete('cascade');
+    $table->timestamps();
+});
 
-        $table->timestamps();
-    });
-}
 
 
     /**

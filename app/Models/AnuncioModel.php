@@ -8,16 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class AnuncioModel extends Model
 {
     use HasFactory;
+
     protected $table = 'anuncio';
-    protected $fillable = ['titulo', 'descricao', 'preco', 'data_publicacao'];
-        public function proprietario()
-    {
-        return $this->belongsTo(Proprietario::class);
-    }
+
+    protected $fillable = [
+        'titulo',
+        'descricao',
+        'preco',
+        'data_publicacao',
+        'veiculo_id'
+    ];
 
     public function veiculo()
     {
-        return $this->belongsTo(Veiculo::class);
+        return $this->belongsTo(VeiculoModel::class, 'veiculo_id');
     }
-
 }
+public function anuncio()
+{
+    return $this->hasOne(AnuncioModel::class, 'veiculo_id');
+}
+
