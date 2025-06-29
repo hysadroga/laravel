@@ -24,7 +24,7 @@ Route::get('/veiculo/editar/{id}', [App\Http\Controllers\VeiculoController::clas
 
 Route::get('/proprietario/formulario', [App\Http\Controllers\ProprietarioController::class, 'formulario'])->name('proprietario-form');
 Route::post('/proprietario/store', [App\Http\Controllers\ProprietarioController::class, 'store'])->name('proprietario-store');
-Route::get('/proprietario/listar', [App\Http\Controllers\ProprietarioController::class, 'listar']);
+Route::get('/proprietario/listar', [App\Http\Controllers\ProprietarioController::class, 'listar'])->name('proprietario-listar');
 Route::get('/proprietario/remover/{id}', [App\Http\Controllers\ProprietarioController::class, 'remover'])->name('proprietario-remover');
 Route::get('/proprietario/editar/{id}', [App\Http\Controllers\ProprietarioController::class, 'editar'])->name('proprietario-editar');
 
