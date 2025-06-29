@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Cadastro de Anúncio</title>
+
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -64,8 +60,7 @@
     button[type="submit"]:hover {
       background-color: #8000ff;
     }
-  </style>
-</head>
+
 <body>
 
   <form action="{{ route('anuncio-store') }}" method="POST">

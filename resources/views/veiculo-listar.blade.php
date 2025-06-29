@@ -33,5 +33,3 @@
         @endforeach
     </tbody>
 </table>
-
-{{-- {{ $clientes->links() }} --}}

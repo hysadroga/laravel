@@ -31,7 +31,7 @@ Route::get('/proprietario/editar/{id}', [App\Http\Controllers\ProprietarioContro
 
 Route::get('/anuncio/formulario', [App\Http\Controllers\AnuncioController::class, 'formulario'])->name('anuncio-form');
 Route::post('/anuncio/store', [App\Http\Controllers\AnuncioController::class, 'store'])->name('anuncio-store');
-Route::get('/anuncio/listar', [App\Http\Controllers\AnuncioController::class, 'listar']);
+Route::get('/anuncio/listar', [App\Http\Controllers\AnuncioController::class, 'listar'])->name('anuncio-listar');
 Route::get('/anuncio/remover/{id}', [App\Http\Controllers\AnuncioController::class, 'remover'])->name('anuncio-remover');
 Route::get('/anuncio/editar/{id}', [App\Http\Controllers\AnuncioController::class, 'editar'])->name('anuncio-editar');
 

@@ -7,41 +7,38 @@ use App\Models\VeiculoModel;
 
 class VeiculoController extends Controller
 {
-    function formulario(){
+    public function formulario()
+    {
         return view('veiculo-formulario');
     }
 
-    function store(Request $dados){
-        if ($dados->id == '') {
-            //fazemos ação de create aqui...
-            $veiculo = new VeiculoModel();
-            $veiculo->create($dados->all());
+    public function store(Request $request)
+    {
+        if (empty($request->id)) {
+            VeiculoModel::create($request->all());
         } else {
-            //fazemos a ação de update aqui
-            $veiculo = VeiculoModel::find($dados->id); //localiza o registro
-            $update = $veiculo->update($dados->all()); //atualiza
+            $veiculo = VeiculoModel::findOrFail($request->id);
+            $veiculo->update($request->all());
         }
-        
-        //recupera todos os registros atualizados
-        $veiculo = VeiculoModel::all();
-        
-        //após adicionar ou editar redireciona para a página listar
-        return view('veiculo-listar', ['veiculo'=>$veiculo]);
-    }  
-
-    function listar(){
-        $veiculo = VeiculoModel::all();
-        return view('veiculo-listar',['veiculo' => $veiculo]);
-    }
-
-    function remover($id){
-        VeiculoModel::destroy($id);
 
         return redirect()->route('veiculo-listar');
-    }  
-    function editar($id){
-        $veiculo = VeiculoModel::find($id);
+    }
 
-    return view('veiculo-formulario', ['veiculo' => $veiculo]);
+    public function listar()
+    {
+        $veiculos = VeiculoModel::all();
+        return view('veiculo-listar', ['veiculos' => $veiculos]);
+    }
+
+    public function remover($id)
+    {
+        VeiculoModel::destroy($id);
+        return redirect()->route('veiculo-listar');
+    }
+
+    public function editar($id)
+    {
+        $veiculo = VeiculoModel::findOrFail($id);
+        return view('veiculo-formulario', ['veiculo' => $veiculo]);
     }
 }

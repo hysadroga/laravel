@@ -23,7 +23,6 @@ class ProprietarioController extends Controller
         
         
         $proprietario = ProprietarioModel::all();
-        
         return view('proprietario-listar', ['proprietario'=>$proprietario]);
     } 
 
@@ -43,3 +42,4 @@ class ProprietarioController extends Controller
     return view('proprietario-formulario', ['proprietario' => $proprietario]);
     }
 }
+
