@@ -20,18 +20,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/clientes', function(){
     return [
-        'nomes' => [
-            'Jussara',
-            'Carlos',
-            'Mariana',
-            'Pedro',
-            'Ana',
-            'Lucas',
-            'Fernanda',
-            'Rafael',
-            'Beatriz',
-            'Gustavo',
-            'Camila'
-        ]
+        ['nome' => 'Jussara', 'email' => 'jussara@email.com'],
+        ['nome' => 'Carlos', 'email' => 'carlos@email.com'],
+        ['nome' => 'Mariana', 'email' => 'mariana@email.com'],
+        ['nome' => 'Pedro', 'email' => 'pedro@email.com'],
+        ['nome' => 'Ana', 'email' => 'ana@email.com'],
+        ['nome' => 'Lucas', 'email' => 'lucas@email.com'],
+        ['nome' => 'Fernanda', 'email' => 'fernanda@email.com'],
+        ['nome' => 'Rafael', 'email' => 'rafael@email.com'],
+        ['nome' => 'Beatriz', 'email' => 'beatriz@email.com'],
+        ['nome' => 'Gustavo', 'email' => 'gustavo@email.com'],
+        ['nome' => 'Camila', 'email' => 'camila@email.com'],
     ];
 });
